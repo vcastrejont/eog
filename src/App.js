@@ -1,4 +1,5 @@
 import React from "react";
+
 import createStore from "./store";
 import { Provider } from "react-redux";
 import { ToastContainer } from "react-toastify";
@@ -16,13 +17,13 @@ const theme = createMuiTheme({
   },
   palette: {
     primary: {
-      main: "rgb(39,49,66)"
+      main: "#fff"
     },
     secondary: {
-      main: "rgb(197,208,222)"
+      main: "#587C92"
     },
     background: {
-      main: "rgb(226,231,238)"
+      main: "#F3F3F3"
     }
   }
 });
@@ -33,7 +34,24 @@ const App = props => (
     <Provider store={store}>
       <Wrapper>
         <Header />
-        <NowWhat />
+        <aside>
+          <nav>
+            <ul>
+              <li>
+                <a href="#">Dashboard</a>
+              </li>
+              <li>
+                <a href="#">Map</a>
+              </li>
+              <li>
+                <a href="#">Charts</a>
+              </li>
+            </ul>
+          </nav>
+        </aside>
+        <main>
+          <NowWhat />
+        </main>
         <ToastContainer />
       </Wrapper>
     </Provider>

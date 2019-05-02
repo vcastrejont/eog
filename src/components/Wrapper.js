@@ -9,8 +9,7 @@ const styles = theme => ({
 });
 
 const Wrapper = props => {
-  const { classes } = props;
-  return <div className={classes.wrapper}>{props.children}</div>;
+  return <div className="container">{props.children}</div>;
 };
 
 export default withStyles(styles)(Wrapper);

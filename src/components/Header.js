@@ -14,16 +14,18 @@ const styles = {
 const Header = props => {
   const { classes } = props;
 
-  const name = "Victor Catrejon's";
+  const name = "Victor Castrejon's";
   return (
-    <AppBar position="static">
-      <Toolbar>
-        <Typography variant="h6" color="inherit" className={classes.grow}>
-          {name} EOG React Visualization Assessment
-        </Typography>
-        <Weather />
-      </Toolbar>
-    </AppBar>
+    <header>
+      <AppBar position="static" elevation={0}>
+        <Toolbar>
+          <Typography variant="h6" color="inherit" className={classes.grow}>
+            {name} EOG React Visualization Assessment
+          </Typography>
+          <Weather />
+        </Toolbar>
+      </AppBar>
+    </header>
   );
 };
 

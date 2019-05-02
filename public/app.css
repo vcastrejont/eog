@@ -1,0 +1,62 @@
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+header {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 5;
+  grid-area: header;
+}
+
+main {
+  -ms-grid-row: 2;
+  -ms-grid-column: 2;
+  -ms-grid-column-span: 4;
+  grid-area: main;
+  padding: 10px;
+}
+
+aside {
+  -ms-grid-row: 2;
+  -ms-grid-column: 1;
+  grid-area: sidebar;
+  padding: 10px;
+}
+
+.container {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[5];
+      grid-template-columns: repeat(5, 1fr);
+  -ms-grid-rows: 50px minmax(50px, 1fr);
+      grid-template-rows: 50px minmax(50px, 1fr);
+      grid-template-areas: "header header header header header" "sidebar main main main main ";
+  grid-gap: 10px;
+  height: 100vh;
+}
+
+#weather .city {
+  border-right: 1px solid #333;
+  text-align: right;
+  display: inline-block;
+  padding-right: 20px;
+}
+
+#weather .temp {
+  display: inline-block;
+  padding-left: 20px;
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+}
+
+nav ul li a {
+  color: #333;
+  text-decoration: none;
+  padding: 10px;
+  display: inline-block;
+}
+/*# sourceMappingURL=app.css.map */

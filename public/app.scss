@@ -1,0 +1,59 @@
+body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+header {
+    grid-area: header;
+}
+
+main {
+    grid-area: main;
+    padding: 10px;
+}
+
+aside {
+    grid-area: sidebar;
+    padding: 10px;
+}
+
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: 50px minmax(50px, 1fr);
+    grid-template-areas: "header header header header header"
+        "sidebar main main main main ";
+    grid-gap: 10px;
+    height: 100vh;
+
+}
+
+#weather {
+    .city {
+        border-right: 1px solid #333;
+        text-align: right;
+        display: inline-block;
+        padding-right: 20px;
+    }
+
+    .temp {
+        display: inline-block;
+        padding-left: 20px;
+    }
+}
+
+nav {
+    ul {
+        list-style: none;
+        padding: 0;
+
+        li {
+            a {
+                color: #333;
+                text-decoration: none;
+                padding: 10px;
+                display: inline-block;
+            }
+        }
+    }
+}
