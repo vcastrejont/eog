@@ -1,32 +1,17 @@
 import React from "react";
-import Card from "@material-ui/core/Card";
 import CardHeaderRaw from "@material-ui/core/CardHeader";
 import CardContent from "@material-ui/core/CardContent";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemText from "@material-ui/core/ListItemText";
 import { withStyles } from "@material-ui/core/styles";
-import AvatarRaw from "@material-ui/core/Avatar";
 
 const cardStyles = theme => ({
   root: {
-    background: theme.palette.primary.main
+    background: "#2196f3"
   },
   title: {
     color: "white"
   }
 });
 const CardHeader = withStyles(cardStyles)(CardHeaderRaw);
-
-const avatarStyles = theme => ({
-  root: {
-    background: theme.palette.primary.main
-  },
-  title: {
-    color: "white"
-  }
-});
-const Avatar = withStyles(avatarStyles)(AvatarRaw);
 
 const styles = {
   card: {
@@ -35,31 +20,30 @@ const styles = {
 };
 
 const NowWhat = props => {
-  const { classes } = props;
   return (
-    <Card className={classes.card}>
-      <CardHeader title="OK, Victor Catrejon, you're all setup. Now What?" />
+    <React.Fragment>
+      <CardHeader title="Dashboard" />
       <CardContent>
-        <List>
-          <ListItem>
-            <Avatar>1</Avatar>
-            <ListItemText primary="Connect to the Drone API" />
-          </ListItem>
-          <ListItem>
-            <Avatar>2</Avatar>
-            <ListItemText primary="Create your Visualization" />
-          </ListItem>
-          <ListItem>
-            <Avatar>3</Avatar>
-            <ListItemText primary="Poll the API" />
-          </ListItem>
-          <ListItem>
-            <Avatar>4</Avatar>
-            <ListItemText primary="Submit Your App" />
-          </ListItem>
-        </List>
+        <table>
+          <tr>
+            <td>Temperature</td>
+            <td />
+          </tr>
+          <tr>
+            <td>Latitude:</td>
+            <td />
+          </tr>
+          <tr>
+            <td>Longitude:</td>
+            <td />
+          </tr>
+          <tr>
+            <td>Last Received:</td>
+            <td />
+          </tr>
+        </table>
       </CardContent>
-    </Card>
+    </React.Fragment>
   );
 };
 
