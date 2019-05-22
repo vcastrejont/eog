@@ -25,6 +25,11 @@ aside {
   padding: 10px;
 }
 
+.loading {
+  text-align: center;
+  padding: 20px 0;
+}
+
 .container {
   display: -ms-grid;
   display: grid;
@@ -55,9 +60,14 @@ nav ul {
 }
 
 nav ul li a {
-  color: #333;
+  color: #2196f3;
   text-decoration: none;
   padding: 10px;
   display: inline-block;
+  font-weight: bold;
+}
+
+nav ul li a.active {
+  color: #333;
 }
 /*# sourceMappingURL=app.css.map */

@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
 import createStore from "./store";
 import { Provider } from "react-redux";
 import { ToastContainer } from "react-toastify";
@@ -8,7 +8,7 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import "react-toastify/dist/ReactToastify.css";
 import Header from "./components/Header";
 import Wrapper from "./components/Wrapper";
-import NowWhat from "./components/NowWhat";
+import Dashboard from "./components/Dashboard";
 import Maps from "./components/Maps";
 import Charts from "./components/Charts";
 import Main from "./components/Main";
@@ -42,19 +42,23 @@ const App = props => (
             <nav>
               <ul>
                 <li>
-                  <Link to="/">Dashboard</Link>
+                  <NavLink to="/" exact activeClassName="active">
+                    Dashboard
+                  </NavLink>
                 </li>
                 <li>
-                  <Link to="/map/">Map </Link>
+                  <NavLink to="/map/" exact activeClassName="active">
+                    Map
+                  </NavLink>
                 </li>
                 <li>
-                  <Link to="/chart">Charts</Link>
+                  <NavLink to="/chart">Charts</NavLink>
                 </li>
               </ul>
             </nav>
           </aside>
           <Main>
-            <Route path="/" exact component={NowWhat} />
+            <Route path="/" exact component={Dashboard} />
             <Route path="/map/" component={Maps} />
             <Route path="/chart/" component={Charts} />
           </Main>

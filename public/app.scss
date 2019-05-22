@@ -17,6 +17,11 @@ aside {
     padding: 10px;
 }
 
+.loading {
+    text-align: center;
+    padding: 20px 0;
+}
+
 
 .container {
     display: grid;
@@ -50,10 +55,15 @@ nav {
 
         li {
             a {
-                color: #333;
+                color: #2196f3;
                 text-decoration: none;
                 padding: 10px;
                 display: inline-block;
+                font-weight: bold;
+
+                &.active {
+                    color: #333;
+                }
             }
         }
     }
