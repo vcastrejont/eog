@@ -50,14 +50,7 @@ export class Charts extends React.Component {
               },
               title: "Sample Drone Temperature",
               curveType: "function",
-              legend: { position: "right" },
-              axes: {
-                // Adds labels to each axis; they don't have to match the axis names.
-                y: {
-                  Temps: { label: "Temps (Celsius)" },
-                  Daylight: { label: "Daylight" }
-                }
-              }
+              legend: { position: "right" }
             }}
             rootProps={{ "data-testid": "1" }}
           />

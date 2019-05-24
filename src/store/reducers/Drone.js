@@ -3,8 +3,9 @@
 import getDroneFeed from "../../store/api/getDroneFeed";
 
 // Actions
-const FETCH_DRONE = "COMMAND/FETCH_DRONE_FEED";
-const FETCH_DRONE_RECEIVED = "EVENT/FETCH_DRONE_RECEIVED";
+export const FETCH_DRONE = "COMMAND/FETCH_DRONE_FEED";
+export const FETCH_DRONE_RECEIVED = "EVENT/FETCH_DRONE_RECEIVED";
+export const FETCH_CANCEL = "EVENT/FETCH_DRONE_CANCEL";
 const UPDATE_LAST = "EVENT/UPDATE_LAST";
 // Initial state
 const initialState = {
@@ -20,7 +21,6 @@ export default (state = initialState, action) => {
     case FETCH_DRONE_RECEIVED:
       return { ...state, loading: false, data: action.data, last: 0 };
     case UPDATE_LAST:
-      console.log(state);
       return { ...state, last: ++state.last };
     default:
       return state;

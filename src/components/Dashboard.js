@@ -17,8 +17,6 @@ const cardStyles = theme => ({
 });
 const CardHeader = withStyles(cardStyles)(CardHeaderRaw);
 
-const styles = {};
-
 class Dashboard extends React.Component {
   timer = null;
   last = null;
@@ -31,44 +29,41 @@ class Dashboard extends React.Component {
     clearInterval(this.timer);
   }
   render() {
-    const { data, loading, last } = this.props;
-    var content;
+    const { data, last } = this.props;
 
-    if (loading) {
-      content = <Loading />;
-    } else {
-      content = (
-        <table>
-          <tbody>
-            <tr>
-              <td>Temperature: </td>
-              <td>{parseFloat(data.metric).toFixed(1)} Fahrenheit</td>
-            </tr>
-            <tr>
-              <td>Latitude:</td>
-              <td>{data.latitude}</td>
-            </tr>
-            <tr>
-              <td>Longitude:</td>
-              <td>{data.longitude}</td>
-            </tr>
-            <tr>
-              <td>Last Received:</td>
-              <td>{last} seconds ago</td>
-            </tr>
-          </tbody>
-        </table>
-      );
+    if (!data) {
+      return <Loading />;
     }
     return (
       <React.Fragment>
         <CardHeader title="Dashboard" />
-        <CardContent>{content}</CardContent>
+        <CardContent>
+          <table>
+            <tbody>
+              <tr>
+                <td>Temperature: </td>
+                <td>{parseFloat(data.metric).toFixed(1)} Fahrenheit</td>
+              </tr>
+              <tr>
+                <td>Latitude:</td>
+                <td>{data.latitude}</td>
+              </tr>
+              <tr>
+                <td>Longitude:</td>
+                <td>{data.longitude}</td>
+              </tr>
+              <tr>
+                <td>Last Received:</td>
+                <td>{last} seconds ago</td>
+              </tr>
+            </tbody>
+          </table>
+        </CardContent>
       </React.Fragment>
     );
   }
 }
-// Hace el dispatch de los action creator,
+
 const mapDispatchToProps = dispatch => {
   const actions = bindActionCreators(
     {

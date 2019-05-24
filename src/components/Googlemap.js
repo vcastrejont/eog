@@ -3,12 +3,20 @@ import { Map, Marker, GoogleApiWrapper } from "google-maps-react";
 import { bindActionCreators, compose } from "redux";
 import { connect } from "react-redux";
 import Loading from "./Loading";
-import { fetchDrone, lastUpdate } from "../store/reducers/Drone";
+import {
+  FETCH_DRONE,
+  FETCH_CANCEL,
+  fetchDrone,
+  lastUpdate
+} from "../store/reducers/Drone";
 
 export class Googlemap extends React.Component {
   componentDidMount() {
-    this.props.fetchDrone();
-    this.timer = setInterval(() => this.props.fetchDrone(), 5000);
+    this.props.dispatch({ type: FETCH_DRONE });
+  }
+
+  componentWillUnmount() {
+    this.props.dispatch({ type: FETCH_CANCEL });
   }
 
   render() {
@@ -70,8 +78,5 @@ export default compose(
   GoogleApiWrapper({
     apiKey: process.env.REACT_APP_GOOGLE_API
   }),
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )
+  connect(mapStateToProps)
 )(Googlemap);
