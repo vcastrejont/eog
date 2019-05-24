@@ -68,7 +68,7 @@ const mapStateToProps = state => {
 
 export default compose(
   GoogleApiWrapper({
-    apiKey: process.env.GOOGLE_API
+    apiKey: process.env.REACT_APP_GOOGLE_API
   }),
   connect(
     mapStateToProps,
