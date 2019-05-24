@@ -1,10 +1,57 @@
+$color-blue: #1d38a0;
+
 body {
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    background-color: #EEEFF3 !important;
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #333;
+    text-align: left;
+    background-color: #ecf0f5;
 }
 
 header {
     grid-area: header;
+    background: #fff;
+    padding: 10px 40px;
+    display: flex;
+    justify-content: space-between;
+
+    #title {
+        line-height: initial;
+
+        h1 {
+            margin: 0;
+            color: $color-blue;
+            text-transform: uppercase;
+            font-weight: 100;
+        }
+
+        span {
+            text-transform: uppercase;
+            font-weight: 100;
+        }
+    }
+
+    #weather {
+        line-height: initial;
+        margin: 10px;
+
+        .city {
+            border-right: 1px solid #333;
+            text-align: right;
+            display: inline-block;
+            padding-right: 20px;
+        }
+
+        .temp {
+            display: inline-block;
+            padding-left: 20px;
+        }
+    }
+
+
 }
 
 main {
@@ -14,7 +61,63 @@ main {
 
 aside {
     grid-area: sidebar;
-    padding: 10px;
+    padding-top: 30px;
+    background: rgb(34, 59, 172);
+    background: linear-gradient(148deg, rgba(34, 59, 172, 1) 0%, rgba(16, 38, 126, 1) 100%);
+
+    .profile {
+
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: center;
+        align-items: center;
+        align-content: stretch;
+
+
+        figure {
+            text-align: center;
+            border: 2px solid #fff;
+            border-radius: 50%;
+            height: 72px;
+            width: 72px;
+
+            img {
+
+                border-radius: 50%;
+                height: 72px;
+                width: 72px;
+            }
+        }
+    }
+
+    nav {
+        ul {
+            list-style: none;
+            padding: 0;
+
+            li {
+                a {
+                    color: #fff;
+                    text-decoration: none;
+                    padding: 5px;
+                    display: inline-block;
+                    border-bottom: 1px solid #4b61b5;
+                    display: block;
+                    padding: 10px;
+
+                    &:hover {
+                        background-color: #344dab;
+                    }
+
+                    &.active {
+                        background-color: #bcc4e3;
+                        color: #333;
+                    }
+                }
+            }
+        }
+    }
 }
 
 .loading {
@@ -25,46 +128,20 @@ aside {
 
 .container {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: 50px minmax(50px, 1fr);
-    grid-template-areas: "header header header header header"
-        "sidebar main main main main ";
-    grid-gap: 10px;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: 90px minmax(50px, 1fr);
+    grid-template-areas: "sidebar header header header header header"
+        "sidebar main main main main main ";
+    grid-gap: 0px;
     height: 100vh;
 
 }
 
-#weather {
-    .city {
-        border-right: 1px solid #333;
-        text-align: right;
-        display: inline-block;
-        padding-right: 20px;
-    }
-
-    .temp {
-        display: inline-block;
-        padding-left: 20px;
-    }
+.Main-card-2 {
+    margin: 3% 3% !important;
 }
 
-nav {
-    ul {
-        list-style: none;
-        padding: 0;
-
-        li {
-            a {
-                color: #2196f3;
-                text-decoration: none;
-                padding: 10px;
-                display: inline-block;
-                font-weight: bold;
-
-                &.active {
-                    color: #333;
-                }
-            }
-        }
-    }
+#map {
+    height: 400px;
+    width: 100%;
 }

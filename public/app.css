@@ -1,28 +1,136 @@
 body {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  background-color: #EEEFF3 !important;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #333;
+  text-align: left;
+  background-color: #ecf0f5;
 }
 
 header {
   -ms-grid-row: 1;
-  -ms-grid-column: 1;
+  -ms-grid-column: 2;
   -ms-grid-column-span: 5;
   grid-area: header;
+  background: #fff;
+  padding: 10px 40px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+header #title {
+  line-height: initial;
+}
+
+header #title h1 {
+  margin: 0;
+  color: #1d38a0;
+  text-transform: uppercase;
+  font-weight: 100;
+}
+
+header #title span {
+  text-transform: uppercase;
+  font-weight: 100;
+}
+
+header #weather {
+  line-height: initial;
+  margin: 10px;
+}
+
+header #weather .city {
+  border-right: 1px solid #333;
+  text-align: right;
+  display: inline-block;
+  padding-right: 20px;
+}
+
+header #weather .temp {
+  display: inline-block;
+  padding-left: 20px;
 }
 
 main {
   -ms-grid-row: 2;
   -ms-grid-column: 2;
-  -ms-grid-column-span: 4;
+  -ms-grid-column-span: 5;
   grid-area: main;
   padding: 10px;
 }
 
 aside {
-  -ms-grid-row: 2;
+  -ms-grid-row: 1;
+  -ms-grid-row-span: 2;
   -ms-grid-column: 1;
   grid-area: sidebar;
+  padding-top: 30px;
+  background: #223bac;
+  background: linear-gradient(148deg, #223bac 0%, #10267e 100%);
+}
+
+aside .profile {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-line-pack: stretch;
+      align-content: stretch;
+}
+
+aside .profile figure {
+  text-align: center;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  height: 72px;
+  width: 72px;
+}
+
+aside .profile figure img {
+  border-radius: 50%;
+  height: 72px;
+  width: 72px;
+}
+
+aside nav ul {
+  list-style: none;
+  padding: 0;
+}
+
+aside nav ul li a {
+  color: #fff;
+  text-decoration: none;
+  padding: 5px;
+  display: inline-block;
+  border-bottom: 1px solid #4b61b5;
+  display: block;
   padding: 10px;
+}
+
+aside nav ul li a:hover {
+  background-color: #344dab;
+}
+
+aside nav ul li a.active {
+  background-color: #bcc4e3;
+  color: #333;
 }
 
 .loading {
@@ -33,41 +141,21 @@ aside {
 .container {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: (1fr)[5];
-      grid-template-columns: repeat(5, 1fr);
-  -ms-grid-rows: 50px minmax(50px, 1fr);
-      grid-template-rows: 50px minmax(50px, 1fr);
-      grid-template-areas: "header header header header header" "sidebar main main main main ";
-  grid-gap: 10px;
+  -ms-grid-columns: (1fr)[6];
+      grid-template-columns: repeat(6, 1fr);
+  -ms-grid-rows: 90px minmax(50px, 1fr);
+      grid-template-rows: 90px minmax(50px, 1fr);
+      grid-template-areas: "sidebar header header header header header" "sidebar main main main main main ";
+  grid-gap: 0px;
   height: 100vh;
 }
 
-#weather .city {
-  border-right: 1px solid #333;
-  text-align: right;
-  display: inline-block;
-  padding-right: 20px;
+.Main-card-2 {
+  margin: 3% 3% !important;
 }
 
-#weather .temp {
-  display: inline-block;
-  padding-left: 20px;
-}
-
-nav ul {
-  list-style: none;
-  padding: 0;
-}
-
-nav ul li a {
-  color: #2196f3;
-  text-decoration: none;
-  padding: 10px;
-  display: inline-block;
-  font-weight: bold;
-}
-
-nav ul li a.active {
-  color: #333;
+#map {
+  height: 400px;
+  width: 100%;
 }
 /*# sourceMappingURL=app.css.map */

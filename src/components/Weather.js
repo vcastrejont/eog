@@ -1,27 +1,21 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as actions from "../store/actions";
-import LinearProgress from "@material-ui/core/LinearProgress";
 
 class Weather extends Component {
   componentDidMount() {
     this.props.onLoad();
   }
   render() {
-    const {
-      loading,
-      name,
-      weather_state_name,
-      temperatureinFahrenheit
-    } = this.props;
-    if (loading) return <LinearProgress />;
+    const { name, weather_state_name, temperatureinFahrenheit } = this.props;
+
     return (
       <div id="weather">
         <span className="city">
           {name} <br /> <small>Weather</small>
         </span>
         <span className="temp">
-          {parseFloat(temperatureinFahrenheit).toFixed(1)} Fahrenheit
+          {parseFloat(temperatureinFahrenheit).toFixed(1)} &deg;
           <br />
           <small>{weather_state_name} </small>
         </span>

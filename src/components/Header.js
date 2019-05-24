@@ -1,32 +1,18 @@
 import React from "react";
-import Typography from "@material-ui/core/Typography";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import { withStyles } from "@material-ui/core/styles";
 import Weather from "./Weather";
 
-const styles = {
-  grow: {
-    flexGrow: 1
-  }
-};
-
 const Header = props => {
-  const { classes } = props;
-
   const name = "Victor Castrejon's";
   return (
     <header>
-      <AppBar position="static" elevation={0}>
-        <Toolbar>
-          <Typography variant="h6" color="inherit" className={classes.grow}>
-            {name} EOG React Visualization Assessment
-          </Typography>
-          <Weather />
-        </Toolbar>
-      </AppBar>
+      <div id="title">
+        <h1>{name}</h1>
+        <span>EOG React Visualization Assessment</span>
+      </div>
+
+      <Weather />
     </header>
   );
 };
 
-export default withStyles(styles)(Header);
+export default Header;

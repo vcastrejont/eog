@@ -17,11 +17,7 @@ const cardStyles = theme => ({
 });
 const CardHeader = withStyles(cardStyles)(CardHeaderRaw);
 
-const styles = {
-  card: {
-    margin: "5% 25%"
-  }
-};
+const styles = {};
 
 class Dashboard extends React.Component {
   timer = null;
