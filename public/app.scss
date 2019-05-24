@@ -141,7 +141,8 @@ aside {
     margin: 3% 3% !important;
 }
 
-#map {
-    height: 400px;
+.customMap {
+    height: 400px !important;
     width: 100%;
+    position: relative !important;
 }

@@ -1,62 +1,77 @@
-import React, { Component } from "react";
-import loadGoogleMapsAPI from "load-google-maps-api";
+import React from "react";
+import { Map, InfoWindow, Marker, GoogleApiWrapper } from "google-maps-react";
+import { bindActionCreators, compose } from "redux";
+import { connect } from "react-redux";
+import Loading from "./Loading";
+import { fetchDrone, lastUpdate } from "../store/reducers/Drone";
 
-const OPTIONS = {
-  center: {
-    lat: 29.801765,
-    lng: -95.359505
-  },
-  zoom: 9,
-  mapTypeControlOptions: {
-    mapTypeIds: ["roadmap", "satellite", "hybrid", "terrain"]
-  }
-};
-
-const markerOptions = (googleMaps, map) => {
-  return {
-    position: {
-      lat: 29.801765,
-      lng: -95.359505
-    },
-    map: map,
-    title: "Drone"
-    // animation: googleMaps.Animation.BOUNCE
-  };
-};
-
-const API_CONFIG = {
-  key: "AIzaSyCigKH0SSiu1fR70_1QXNDYCeGUgR2N_AU",
-  language: "en"
-};
-
-class Googlemap extends Component {
-  componentWillUnmount() {
-    const allScripts = document.getElementsByTagName("script");
-    [].filter
-      .call(
-        allScripts,
-        scpt =>
-          scpt.src.indexOf("key=AIzaSyCigKH0SSiu1fR70_1QXNDYCeGUgR2N_AU") >= 0
-      )[0]
-      .remove();
-
-    window.google = {};
-  }
-
+export class Googlemap extends React.Component {
   componentDidMount() {
-    loadGoogleMapsAPI(API_CONFIG)
-      .then(googleMaps => {
-        const maps = new googleMaps.Map(this.refs.map, OPTIONS);
-        const marker = new googleMaps.Marker(markerOptions(googleMaps, maps));
-      })
-      .catch(err => {
-        console.log("Something went wrong loading the map", err);
-      });
+    this.props.fetchDrone();
+    this.timer = setInterval(() => this.props.fetchDrone(), 5000);
   }
 
   render() {
-    return <div id="map" ref="map" />;
+    const { data, google } = this.props;
+
+    if (!data) {
+      return <Loading />;
+    }
+
+    return (
+      <Map
+        className="customMap"
+        google={this.props.google}
+        initialCenter={{
+          lat: data.latitude,
+          lng: data.longitude
+        }}
+        center={{
+          lat: data.latitude,
+          lng: data.longitude
+        }}
+        zoom={7}
+      >
+        <Marker
+          position={{
+            lat: data.latitude,
+            lng: data.longitude
+          }}
+          icon={{
+            url: "/img/drone.png"
+          }}
+        />
+      </Map>
+    );
   }
 }
 
-export default Googlemap;
+const mapDispatchToProps = dispatch => {
+  const actions = bindActionCreators(
+    {
+      fetchDrone,
+      lastUpdate
+    },
+    dispatch
+  );
+  return actions;
+};
+
+const mapStateToProps = state => {
+  const last = state.drone.data.length;
+  return {
+    loading: state.drone.loading,
+    data: state.drone.data[last - 1],
+    last: state.drone.last
+  };
+};
+
+export default compose(
+  GoogleApiWrapper({
+    apiKey: "AIzaSyCigKH0SSiu1fR70_1QXNDYCeGUgR2N_AU"
+  }),
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )
+)(Googlemap);
