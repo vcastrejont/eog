@@ -1,5 +1,5 @@
 import React from "react";
-import { Map, InfoWindow, Marker, GoogleApiWrapper } from "google-maps-react";
+import { Map, Marker, GoogleApiWrapper } from "google-maps-react";
 import { bindActionCreators, compose } from "redux";
 import { connect } from "react-redux";
 import Loading from "./Loading";
@@ -12,7 +12,7 @@ export class Googlemap extends React.Component {
   }
 
   render() {
-    const { data, google } = this.props;
+    const { data } = this.props;
 
     if (!data) {
       return <Loading />;
@@ -68,7 +68,7 @@ const mapStateToProps = state => {
 
 export default compose(
   GoogleApiWrapper({
-    apiKey: "AIzaSyCigKH0SSiu1fR70_1QXNDYCeGUgR2N_AU"
+    apiKey: process.env.GOOGLE_API
   }),
   connect(
     mapStateToProps,

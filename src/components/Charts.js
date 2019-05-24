@@ -1,6 +1,10 @@
 import React from "react";
 import { Chart } from "react-google-charts";
+import { bindActionCreators, compose } from "redux";
+import { connect } from "react-redux";
 
+import Loading from "./Loading";
+import { fetchDrone, lastUpdate } from "../store/reducers/Drone";
 import CardHeaderRaw from "@material-ui/core/CardHeader";
 import CardContent from "@material-ui/core/CardContent";
 import { withStyles } from "@material-ui/core/styles";
@@ -53,4 +57,27 @@ const Charts = props => {
   );
 };
 
-export default Charts;
+const mapDispatchToProps = dispatch => {
+  const actions = bindActionCreators(
+    {
+      fetchDrone,
+      lastUpdate
+    },
+    dispatch
+  );
+  return actions;
+};
+
+const mapStateToProps = state => {
+  const last = state.drone.data.length;
+  return {
+    loading: state.drone.loading,
+    data: state.drone.data[last - 1],
+    last: state.drone.last
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Charts);

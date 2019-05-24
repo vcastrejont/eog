@@ -93,6 +93,4 @@ const mapStateToProps = state => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withStyles(styles)(Dashboard));
-// map dispatch to props
-// usar action creators
+)(Dashboard);

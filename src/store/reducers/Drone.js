@@ -13,8 +13,6 @@ const initialState = {
   last: 0
 };
 
-// Reducer
-//un reducer tiene state y action
 export default (state = initialState, action) => {
   switch (action.type) {
     case FETCH_DRONE:
@@ -29,7 +27,6 @@ export default (state = initialState, action) => {
   }
 };
 
-// action creator returns an actioon object
 export function startFetch() {
   return {
     type: FETCH_DRONE
@@ -48,8 +45,6 @@ export function lastUpdate() {
   };
 }
 
-// side effects / thunk
-// its action creater that returns a func that has a dispatch
 export function fetchDrone() {
   return async dispatch => {
     dispatch(startFetch());
