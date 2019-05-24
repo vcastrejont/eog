@@ -5,7 +5,7 @@ const Sidebar = () => {
     <aside>
       <div className="profile">
         <figure>
-          <img src="/profile.jpg" alt="" />
+          <img src="/img/profile.jpg" alt="" />
         </figure>
       </div>
       <nav>
