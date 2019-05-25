@@ -66,7 +66,9 @@ const mapStateToProps = state => {
   return {
     loading: state.drone.loading,
     data: state.drone.data.map((item, index) => {
-      return [new Date(item.timestamp * 1000).toString(), item.metric];
+      const d = new Date(item.timestamp * 1000);
+      const strDate = `${d.getHours()}:${d.getMinutes()}`;
+      return [strDate, item.metric];
     })
   };
 };
