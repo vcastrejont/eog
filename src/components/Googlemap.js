@@ -1,14 +1,9 @@
 import React from "react";
 import { Map, Marker, GoogleApiWrapper } from "google-maps-react";
-import { bindActionCreators, compose } from "redux";
+import { compose } from "redux";
 import { connect } from "react-redux";
 import Loading from "./Loading";
-import {
-  FETCH_DRONE,
-  FETCH_CANCEL,
-  fetchDrone,
-  lastUpdate
-} from "../store/reducers/Drone";
+import { FETCH_DRONE, FETCH_CANCEL } from "../store/reducers/Drone";
 
 export class Googlemap extends React.Component {
   componentDidMount() {
@@ -54,23 +49,10 @@ export class Googlemap extends React.Component {
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  const actions = bindActionCreators(
-    {
-      fetchDrone,
-      lastUpdate
-    },
-    dispatch
-  );
-  return actions;
-};
-
 const mapStateToProps = state => {
   const last = state.drone.data.length;
   return {
-    loading: state.drone.loading,
-    data: state.drone.data[last - 1],
-    last: state.drone.last
+    data: state.drone.data[last - 1]
   };
 };
 

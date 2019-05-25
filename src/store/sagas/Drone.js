@@ -10,7 +10,11 @@ import {
 } from "redux-saga/effects";
 import API from "../api";
 import * as actions from "../actions";
-import { FETCH_DRONE, FETCH_CANCEL, completeFetch } from "../reducers/Drone";
+import {
+  FETCH_DRONE,
+  FETCH_CANCEL,
+  FETCH_DRONE_RECEIVED
+} from "../reducers/Drone";
 
 function* startDroneFetch(action) {
   while (true) {
@@ -20,7 +24,8 @@ function* startDroneFetch(action) {
       yield cancel();
       return;
     }
-    yield put(completeFetch(data.data));
+    yield put({ type: FETCH_DRONE_RECEIVED, data: data.data });
+
     yield delay(4000);
   }
 }

@@ -1,14 +1,13 @@
 import React from "react";
 import { Chart } from "react-google-charts";
-import { bindActionCreators, compose } from "redux";
 import { connect } from "react-redux";
 
 import Loading from "./Loading";
-import { fetchDrone, lastUpdate } from "../store/reducers/Drone";
+
 import CardHeaderRaw from "@material-ui/core/CardHeader";
 import CardContent from "@material-ui/core/CardContent";
 import { withStyles } from "@material-ui/core/styles";
-
+import { FETCH_DRONE, FETCH_CANCEL } from "../store/reducers/Drone";
 const cardStyles = theme => ({
   root: {
     background: "#2196f3"
@@ -21,8 +20,11 @@ const CardHeader = withStyles(cardStyles)(CardHeaderRaw);
 
 export class Charts extends React.Component {
   componentDidMount() {
-    this.props.fetchDrone();
-    this.timer = setInterval(() => this.props.fetchDrone(), 5000);
+    this.props.dispatch({ type: FETCH_DRONE });
+  }
+
+  componentWillUnmount() {
+    this.props.dispatch({ type: FETCH_CANCEL });
   }
   render() {
     const { data } = this.props;
@@ -60,17 +62,6 @@ export class Charts extends React.Component {
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  const actions = bindActionCreators(
-    {
-      fetchDrone,
-      lastUpdate
-    },
-    dispatch
-  );
-  return actions;
-};
-
 const mapStateToProps = state => {
   return {
     loading: state.drone.loading,
@@ -80,7 +71,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Charts);
+export default connect(mapStateToProps)(Charts);

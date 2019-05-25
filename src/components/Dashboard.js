@@ -1,11 +1,10 @@
 import React from "react";
-import { bindActionCreators } from "redux";
 import CardHeaderRaw from "@material-ui/core/CardHeader";
 import CardContent from "@material-ui/core/CardContent";
 import { withStyles } from "@material-ui/core/styles";
 import { connect } from "react-redux";
 import Loading from "./Loading";
-import { fetchDrone, lastUpdate } from "../store/reducers/Drone";
+import { FETCH_DRONE, FETCH_CANCEL } from "../store/reducers/Drone";
 
 const cardStyles = theme => ({
   root: {
@@ -18,15 +17,12 @@ const cardStyles = theme => ({
 const CardHeader = withStyles(cardStyles)(CardHeaderRaw);
 
 class Dashboard extends React.Component {
-  timer = null;
-  last = null;
   componentDidMount() {
-    this.props.fetchDrone();
-    this.timer = setInterval(() => this.props.fetchDrone(), 5000);
-    this.last = setInterval(() => this.props.lastUpdate(), 1000);
+    this.props.dispatch({ type: FETCH_DRONE });
   }
+
   componentWillUnmount() {
-    clearInterval(this.timer);
+    this.props.dispatch({ type: FETCH_CANCEL });
   }
   render() {
     const { data, last } = this.props;
@@ -64,18 +60,6 @@ class Dashboard extends React.Component {
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  const actions = bindActionCreators(
-    {
-      fetchDrone,
-      lastUpdate
-    },
-    dispatch
-  );
-
-  return actions;
-};
-
 const mapStateToProps = state => {
   const last = state.drone.data.length;
   return {
@@ -85,7 +69,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Dashboard);
+export default connect(mapStateToProps)(Dashboard);
